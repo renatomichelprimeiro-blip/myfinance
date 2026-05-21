@@ -366,7 +366,40 @@ function ActionButton({ label, onClick, color }) { const classes = color === 'gr
 function Card({ title, value, color }) { return <div className="bg-white rounded-3xl p-5 shadow-sm"><p className="text-gray-500 text-sm">{title}</p><h2 className={`text-2xl md:text-3xl font-bold mt-2 ${color}`}>{value}</h2></div>; }
 function ListSection({ title, subtitle, right, children }) { return <section className="bg-white rounded-3xl p-6 shadow-sm"><div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6"><div><h2 className="text-2xl font-bold">{title}</h2><p className="text-gray-500">{subtitle}</p></div><div className="bg-blue-50 rounded-2xl px-5 py-3 text-blue-800 font-semibold">{right}</div></div>{children}</section>; }
 function FormCard({ title, subtitle, children }) { return <section className="bg-white rounded-3xl p-6 shadow-sm max-w-2xl mx-auto"><h2 className="text-2xl font-bold mb-1">{title}</h2><p className="text-gray-500 mb-6">{subtitle}</p>{children}</section>; }
-function Input({ label, value, onChange, placeholder, type = 'text' }) { return <label className="block"><span className="font-semibold text-gray-700">{label}</span><input type={type} value={value} onChange={(e) => onChange(e.target.value)} placeholder={placeholder} className="mt-2 w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-blue-500 transition" /></label>; }
+function formatReal(value) {
+  const numbers = String(value).replace(/\D/g, '');
+  const amount = Number(numbers) / 100;
+
+  if (!numbers) return '';
+
+  return amount.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+}
+
+function Input({ label, value, onChange, placeholder, type = 'text' }) {
+  const isMoney = label === 'Valor' || label === 'Limite' || label === 'Usado' || label === 'Valor alvo' || label === 'Valor atual';
+
+  return (
+    <label className="block">
+      <span className="font-semibold text-gray-700">{label}</span>
+      <input
+        type="text"
+        value={isMoney ? formatReal(value) : value}
+        onChange={(e) => {
+          if (isMoney) {
+            onChange(e.target.value.replace(/\D/g, ''));
+          } else {
+            onChange(e.target.value);
+          }
+        }}
+        placeholder={placeholder}
+        className="mt-2 w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-blue-500 transition"
+      />
+    </label>
+  );
+}
 function Select({ label, value, options, onChange }) { return <label className="block"><span className="font-semibold text-gray-700">{label}</span><select value={value} onChange={(e) => onChange(e.target.value)} className="mt-2 w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-blue-500 transition">{options.map((option) => <option key={option} value={option}>{option}</option>)}</select></label>; }
 function Submit({ label }) { return <button className="w-full bg-blue-950 text-white py-4 rounded-2xl font-bold hover:opacity-90 transition">{label}</button>; }
 function Info({ label, value }) { return <div className="flex justify-between py-3 border-b border-gray-100 last:border-b-0"><span className="text-gray-500">{label}</span><strong>{value}</strong></div>; }
