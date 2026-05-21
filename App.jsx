@@ -391,7 +391,8 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
           if (isMoney) {
             onChange(e.target.value.replace(/\D/g, ''));
           } else {
-            onChange(e.target.value);
+            onChange(const formatted = e.target.value.replace(/\b\w/g, (l) => l.toUpperCase());
+onChange(formatted););
           }
         }}
         placeholder={placeholder}
