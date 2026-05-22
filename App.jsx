@@ -130,7 +130,16 @@ const [billForm, setBillForm] = useState({
       setBills(bills.map((bill) => bill.id === editingBillId ? { ...bill, name: billForm.name, amount: Number(billForm.amount), dueDay: Number(billForm.dueDay), company: billForm.company, category: billForm.category } : bill));
       setEditingBillId(null);
     } else {
-      setBills([...bills, { id: Date.now(), name: billForm.name, amount: Number(billForm.amount), dueDay: Number(billForm.dueDay), company: billForm.company, category: billForm.category, status: 'Pendente' }]);
+     setBills([...bills, {
+  id: Date.now(),
+  name: billForm.name,
+  amount: Number(billForm.amount),
+  dueDay: Number(billForm.dueDay),
+  company: billForm.company,
+  category: billForm.category,
+  status: 'Pendente',
+  recurring: billForm.recurring
+}]);
     }
 
     setBillForm({ name: '', amount: '', dueDay: '', company: companies[0] || 'Pessoal', category: 'Outros' });
