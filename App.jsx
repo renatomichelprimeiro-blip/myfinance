@@ -317,7 +317,30 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
         <Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} />
         <Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} />
       </div>
+<div className="space-y-2">
+  <label className="font-semibold text-gray-700">
+    Recorrência
+  </label>
 
+  <select
+    value={form.recurring === false ? "unica" : "recorrente"}
+    onChange={(e) =>
+      setForm({
+        ...form,
+        recurring: e.target.value === "recorrente"
+      })
+    }
+    className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none"
+  >
+    <option value="recorrente">
+      Mensal recorrente
+    </option>
+
+    <option value="unica">
+      Somente este mês
+    </option>
+  </select>
+</div>
       <div className="bg-gray-50 rounded-2xl p-4">
         <p className="font-semibold text-gray-700 mb-3">Tipo da despesa</p>
 
