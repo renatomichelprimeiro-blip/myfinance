@@ -92,7 +92,14 @@ export default function MyFinanceApp() {
     { id: 2, title: 'Nova loja', target: 50000, current: 12000 },
   ]);
   const [goalForm, setGoalForm] = useState({ title: '', target: '', current: '' });
-  const [billForm, setBillForm] = useState({ name: '', amount: '', dueDay: '', company: 'Óptica Center', category: 'Outros' });
+const [billForm, setBillForm] = useState({
+  name: '',
+  amount: '',
+  dueDay: '',
+  company: 'Óptica Center',
+  category: 'Outros',
+  recurring: true
+});
   const [expenseForm, setExpenseForm] = useState({ description: '', amount: '', company: 'Óptica Center', category: 'Outros', date: today() });
   const [revenueForm, setRevenueForm] = useState({ description: '', amount: '', company: 'Óptica Center', method: 'Pix', date: today() });
 
