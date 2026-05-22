@@ -330,39 +330,7 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
 </div><Submit label={editing ? "Salvar alterações" : <div className="bg-gray-50 rounded-2xl p-4 space-y-3">
   <p className="font-semibold text-gray-700">
     Tipo da despesa
-  </p>
-
-  <label className="flex items-center gap-3">
-    <input
-      type="radio"
-      checked={billForm.recurring === true}
-      onChange={() =>
-        setBillForm({
-          ...billForm,
-          recurring: true,
-        })
-      }
-    />
-
-    <span>Mensal recorrente</span>
-  </label>
-
-  <label className="flex items-center gap-3">
-    <input
-      type="radio"
-      checked={billForm.recurring === false}
-      onChange={() =>
-        setBillForm({
-          ...billForm,
-          recurring: false,
-        })
-      }
-    />
-
-    <span>Somente este mês</span>
-  </label>
-</div>"Salvar conta"} />{editing && <button type="button" onClick={cancelEdit} className="w-full bg-gray-100 text-gray-700 py-4 rounded-2xl font-bold hover:bg-gray-200 transition">Cancelar edição</button>}</form></FormCard>;
-}
+  
 
 function ExpenseForm({ form, setForm, onSubmit, companies, categories }) {
   return <FormCard title="Nova despesa" subtitle="Cadastre um gasto avulso."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Compra de armações" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 2500" /><Input label="Data" type="date" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} /></div><Submit label="Salvar despesa" /></form></FormCard>;
