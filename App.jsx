@@ -307,60 +307,35 @@ function RecordsList({ items, type, onDelete }) {
 }
 
 function BillForm({ form, setForm, onSubmit, companies, categories, editing, cancelEdit }) {
-  return <FormCard title={editing ? "Editar conta mensal" : "Nova conta mensal"} subtitle={editing ? "Atualize os dados da conta." : "Cadastre uma conta fixa que você paga todo mês."}><form onSubmit={onSubmit} className="space-y-4"><Input label="Nome" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="Ex: Aluguel" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 850" /><Input label="Dia do vencimento" type="number" value={form.dueDay} onChange={(v) => setForm({ ...form, dueDay: v })} placeholder="Ex: 10" /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} /></div><div className="bg-gray-50 rounded-2xl p-4 space-y-3">
-  <p className="font-semibold text-gray-700">Tipo da despesa</p>
+  return <FormCard title={editing ? "Editar conta mensal" : "Nova conta mensal"} subtitle={editing ? "Atualize os dados da conta." : "Cadastre uma conta fixa que você paga todo mês."}>
+    <form onSubmit={onSubmit} className="space-y-4">
+      <Input label="Nome" value={form.name} onChange={(v) => setForm({ ...form, name: v })} placeholder="Ex: Aluguel" />
+      <Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 850" />
+      <Input label="Dia do vencimento" type="number" value={form.dueDay} onChange={(v) => setForm({ ...form, dueDay: v })} placeholder="Ex: 10" />
 
-  <label className="flex items-center gap-3">
-    <input
-      type="radio"
-      checked={form.recurring === true}
-      onChange={() => setForm({ ...form, recurring: true })}
-    />
-    <span>Mensal recorrente</span>
-  </label>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} />
+        <Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} />
+      </div>
 
-  <label className="flex items-center gap-3">
-    <input
-      type="radio"
-      checked={form.recurring === false}
-      onChange={() => setForm({ ...form, recurring: false })}
-    />
-    <span>Somente este mês</span>
-  </label>
-    <div style={{
-  background: '#f5f5f5',
-  padding: '15px',
-  borderRadius: '16px',
-  marginBottom: '15px'
-}}>
-  <p style={{ fontWeight: 'bold', marginBottom: '10px' }}>
-    Tipo da despesa
-  </p>
+      <div className="bg-gray-50 rounded-2xl p-4">
+        <p className="font-semibold text-gray-700 mb-3">Tipo da despesa</p>
 
-  <select
-    value={form.recurring ? 'recorrente' : 'unica'}
-    onChange={(e) =>
-      setForm({
-        ...form,
-        recurring: e.target.value === 'recorrente'
-      })
-    }
-    style={{
-      width: '100%',
-      padding: '12px',
-      borderRadius: '12px'
-    }}
-  >
-    <option value="recorrente">
-      Mensal recorrente
-    </option>
+        <select
+          value={form.recurring === false ? "unica" : "recorrente"}
+          onChange={(e) => setForm({ ...form, recurring: e.target.value === "recorrente" })}
+          className="w-full bg-white border border-gray-200 rounded-2xl px-4 py-4 outline-none"
+        >
+          <option value="recorrente">Mensal recorrente</option>
+          <option value="unica">Somente este mês</option>
+        </select>
+      </div>
 
-    <option value="unica">
-      Somente este mês
-    </option>
-  </select>
-</div>
-</div><Submit label={editing ? "Salvar alterações" : "Salvar conta"} /></form></FormCard>;
+      <Submit label={editing ? "Salvar alterações" : "Salvar conta"} />
+      {editing && <button type="button" onClick={cancelEdit} className="w-full bg-gray-100 text-gray-700 py-4 rounded-2xl font-bold hover:bg-gray-200 transition">Cancelar edição</button>}
+    </form>
+  </FormCard>;
+}
 function ExpenseForm({ form, setForm, onSubmit, companies, categories }) {
   return <FormCard title="Nova despesa" subtitle="Cadastre um gasto avulso."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Compra de armações" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 2500" /><Input label="Data" type="date" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} /></div><Submit label="Salvar despesa" /></form></FormCard>;
 }
