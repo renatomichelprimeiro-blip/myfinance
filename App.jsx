@@ -463,15 +463,15 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
         onChange={(e) => {
           if (isMoney) {
             onChange(e.target.value.replace(/\D/g, ''));
-          } else {
-            onChange(let formatted = e.target.value;
+} else {
+  let formatted = e.target.value;
 
-if (type !== 'number') {
-  formatted = formatted.replace(/\b\w/g, (l) => l.toUpperCase());
+  if (type !== 'number') {
+    formatted = formatted.replace(/\b\w/g, (l) => l.toUpperCase());
+  }
+
+  onChange(formatted);
 }
-
-onChange(formatted););
-          }
         }}
         placeholder={placeholder}
         className="mt-2 w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none focus:border-blue-500 transition"
