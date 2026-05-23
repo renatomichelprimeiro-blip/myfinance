@@ -439,8 +439,8 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
     <label className="block">
       <span className="font-semibold text-gray-700">{label}</span>
       <input
-        type="text"
-        value={isMoney ? formatReal(value) : value}
+     type={type === 'date' ? 'date' : 'text'}
+       value={type === 'date' ? value : isMoney ? formatReal(value) : value}
         onChange={(e) => {
           if (isMoney) {
             onChange(e.target.value.replace(/\D/g, ''));
