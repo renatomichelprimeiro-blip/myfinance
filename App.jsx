@@ -332,7 +332,7 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
       <div className="space-y-4">
         <Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} />
         <Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} />
-      <div className="space-y-2" style={{ gridColumn: "1 / -1" }}>
+      <div className="space-y-2">
   
           <label className="block font-semibold text-gray-700">
     Recorrência
