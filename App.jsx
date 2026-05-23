@@ -127,13 +127,13 @@ const [billForm, setBillForm] = useState({
     if (!billForm.name || !billForm.amount || !billForm.dueDay) return;
 
     if (editingBillId) {
-      setBills(bills.map((bill) => bill.id === editingBillId ? { ...bill, name: billForm.name, amount: Number(billForm.amount), dueDay: Number(billForm.dueDay), company: billForm.company, category: billForm.category } : bill));
+      setBills(bills.map((bill) => bill.id === editingBillId ? { ...bill, name: billForm.name, amount: Number(billForm.amount) / 100, dueDay: Number(billForm.dueDay), company: billForm.company, category: billForm.category } : bill));
       setEditingBillId(null);
     } else {
      setBills([...bills, {
   id: Date.now(),
   name: billForm.name,
-  amount: Number(billForm.amount),
+  amount: Number(billForm.amount) / 100,
   dueDay: Number(billForm.dueDay),
   company: billForm.company,
   category: billForm.category,
@@ -155,7 +155,7 @@ const [billForm, setBillForm] = useState({
   function addExpense(e) {
     e.preventDefault();
     if (!expenseForm.description || !expenseForm.amount) return;
-    setExpenses([...expenses, { ...expenseForm, id: Date.now(), amount: Number(expenseForm.amount) }]);
+    setExpenses([...expenses, { ...expenseForm, id: Date.now(), amount: Number(expenseForm.amount) / 100 }]);
     setExpenseForm({ description: '', amount: '', company: companies[0] || 'Pessoal', category: 'Outros', date: today() });
     setTab('despesas');
   }
@@ -163,7 +163,7 @@ const [billForm, setBillForm] = useState({
   function addRevenue(e) {
     e.preventDefault();
     if (!revenueForm.description || !revenueForm.amount) return;
-    setRevenues([...revenues, { ...revenueForm, id: Date.now(), amount: Number(revenueForm.amount) }]);
+    setRevenues([...revenues, { ...revenueForm, id: Date.now(), amount: Number(revenueForm.amount)/ 100}]);
     setRevenueForm({ description: '', amount: '', company: companies[0] || 'Pessoal', method: 'Pix', date: today() });
     setTab('receitas');
   }
