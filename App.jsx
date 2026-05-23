@@ -333,7 +333,8 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
         <Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} />
         <Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} />
         <div className="space-y-2">
-  <label className="font-semibold text-gray-700">
+  </div>
+          <label className="font-semibold text-gray-700">
     Recorrência
   </label>
 
