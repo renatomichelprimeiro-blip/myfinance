@@ -338,8 +338,20 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
     Recorrência
   </label>
 
+  <div className="space-y-2">
+  <label className="block font-semibold text-gray-700">
+    Recorrência
+  </label>
+<div className="space-y-2">
+  <label className="block font-semibold text-gray-700">
+    Recorrência
+  </label>
+<div className="space-y-2">
+  <label className="block font-semibold text-gray-700">
+    Recorrência
+  </label>
+
   <select
-    
     value={form.recurring === false ? "unica" : "recorrente"}
     onChange={(e) =>
       setForm({
@@ -349,14 +361,12 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
     }
     className="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 outline-none"
   >
-    <option value="recorrente">
-      Mensal recorrente
-    </option>
-
-    <option value="unica">
-      Somente este mês
-    </option>
+    <option value="recorrente">Mensal recorrente</option>
+    <option value="unica">Somente este mês</option>
   </select>
+</div>
+</div>
+</div>
 </div>
       <Submit label={editing ? "Salvar alterações" : "Salvar conta"} />
       {editing && <button type="button" onClick={cancelEdit} className="w-full bg-gray-100 text-gray-700 py-4 rounded-2xl font-bold hover:bg-gray-200 transition">Cancelar edição</button>}
