@@ -435,7 +435,7 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
   let formatted = e.target.value;
 
   if (type !== 'number') {
-    formatted = formatted.replace(/\b\w/g, (l) => l.toUpperCase());
+ formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
   }
 
   onChange(formatted);
