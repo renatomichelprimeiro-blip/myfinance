@@ -350,7 +350,6 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
     <option value="recorrente">
       Mensal recorrente
     
-      Mensal recorrente
     </option>
 
     <option value="unica">
