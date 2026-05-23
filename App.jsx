@@ -318,7 +318,20 @@ function BillsTable({ bills, setBills, editBill }) {
 }
 
 function RecordsList({ items, type, onDelete }) {
-  if (!items.length) return <Empty text="Nenhum lançamento encontrado." />;
+if (!items.length) return (
+  <div className="space-y-4">
+    <Empty text="Nenhum lançamento encontrado." />
+
+    <div className="flex justify-center">
+      <button
+        onClick={() => setTab('nova-receita')}
+        className="bg-blue-950 text-white px-6 py-4 rounded-2xl font-bold hover:opacity-90 transition"
+      >
+        + Adicionar receita
+      </button>
+    </div>
+  </div>
+);
   return <div className="space-y-4">{items.map((item) => <div key={item.id} className="border border-gray-100 rounded-2xl p-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div><h3 className="font-semibold text-lg">{item.description}</h3><p className="text-gray-500">{item.company} • {item.category || item.method} • {item.date}</p></div><div className="flex items-center gap-3"><strong className={type === 'revenue' ? 'text-green-600 text-xl' : 'text-red-500 text-xl'}>{money(item.amount)}</strong><button onClick={() => onDelete(item.id)} className="text-red-500 px-3 py-2 rounded-xl hover:bg-red-50">Excluir</button></div></div>)}</div>;
 }
 
