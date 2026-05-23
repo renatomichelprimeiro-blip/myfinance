@@ -339,7 +339,7 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
   </label>
 
   <select
-
+    
     value={form.recurring === false ? "unica" : "recorrente"}
     onChange={(e) =>
       setForm({
