@@ -329,7 +329,7 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
       <Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 850" />
       <Input label="Dia do vencimento" type="number" value={form.dueDay} onChange={(v) => setForm({ ...form, dueDay: v })} placeholder="Ex: 10" />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="space-y-4">
         <Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} />
         <Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} />
       <div className="space-y-2" style={{ gridColumn: "1 / -1" }}>
