@@ -365,11 +365,11 @@ function BillForm({ form, setForm, onSubmit, companies, categories, editing, can
   );
 }
 function ExpenseForm({ form, setForm, onSubmit, companies, categories }) {
-  return <FormCard title="Nova despesa" subtitle="Cadastre um gasto avulso."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Compra de armações" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 2500" /><Input label="Data" type="date" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} /></div><Submit label="Salvar despesa" /></form></FormCard>;
+  return <FormCard title="Nova despesa" subtitle="Cadastre um gasto avulso."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Compra de armações" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 2500" /><Input label="Data" type="text" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Categoria" value={form.category} options={categories} onChange={(v) => setForm({ ...form, category: v })} /></div><Submit label="Salvar despesa" /></form></FormCard>;
 }
 
 function RevenueForm({ form, setForm, onSubmit, companies }) {
-  return <FormCard title="Nova receita" subtitle="Cadastre uma entrada de dinheiro."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Vendas do dia" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 4300" /><Input label="Data" type="date" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Forma de recebimento" value={form.method} options={methods} onChange={(v) => setForm({ ...form, method: v })} /></div><Submit label="Salvar receita" /></form></FormCard>;
+  return <FormCard title="Nova receita" subtitle="Cadastre uma entrada de dinheiro."><form onSubmit={onSubmit} className="space-y-4"><Input label="Descrição" value={form.description} onChange={(v) => setForm({ ...form, description: v })} placeholder="Ex: Vendas do dia" /><Input label="Valor" type="number" value={form.amount} onChange={(v) => setForm({ ...form, amount: v })} placeholder="Ex: 4300" /><Input label="Data" type="text" value={form.date} onChange={(v) => setForm({ ...form, date: v })} /><div className="grid grid-cols-1 md:grid-cols-2 gap-4"><Select label="Empresa" value={form.company} options={companies} onChange={(v) => setForm({ ...form, company: v })} /><Select label="Forma de recebimento" value={form.method} options={methods} onChange={(v) => setForm({ ...form, method: v })} /></div><Submit label="Salvar receita" /></form></FormCard>;
 }
 
 function Companies({ companies, setCompanies, bills, expenses, newCompany, setNewCompany, addCompany }) {
@@ -448,6 +448,15 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
   let formatted = e.target.value;
 
   if (type !== 'number') {
+    if (label === 'Data') {
+  formatted = formatted.replace(/\D/g, '');
+
+  if (formatted.length > 2)
+    formatted = formatted.slice(0, 2) + '/' + formatted.slice(2);
+
+  if (formatted.length > 5)
+    formatted = formatted.slice(0, 5) + '/' + formatted.slice(5, 9);
+}
  formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
   }
 
