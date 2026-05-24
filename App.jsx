@@ -457,7 +457,9 @@ function Input({ label, value, onChange, placeholder, type = 'text' }) {
   if (formatted.length > 5)
     formatted = formatted.slice(0, 5) + '/' + formatted.slice(5, 9);
 }
- formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+ } else {
+  formatted = formatted.charAt(0).toUpperCase() + formatted.slice(1);
+}
   }
 
   onChange(formatted);
